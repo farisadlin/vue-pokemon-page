@@ -1,14 +1,26 @@
 import './assets/main.css'
 
-import { createApp } from 'vue'
-import { createPinia } from 'pinia'
-
+import { createApp, provide, h } from 'vue'
+import { DefaultApolloClient } from '@vue/apollo-composable'
+import { ApolloClient, InMemoryCache } from '@apollo/client/core'
 import App from './App.vue'
-import router from './router'
 
-const app = createApp(App)
+import VueAwesomePaginate from "vue-awesome-paginate";
+import "vue-awesome-paginate/dist/style.css";
 
-app.use(createPinia())
-app.use(router)
+const cache = new InMemoryCache()
 
-app.mount('#app')
+const apolloClient = new ApolloClient({
+  cache,
+  uri: 'https://graphql-pokeapi.graphcdn.app/',
+})
+
+const app = createApp({
+  setup () {
+    provide(DefaultApolloClient, apolloClient)
+  },
+
+  render: () => h(App),
+})
+
+app.use(VueAwesomePaginate).mount('#app');

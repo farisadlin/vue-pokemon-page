@@ -1,12 +1,61 @@
-<script setup lang="ts">
-import { ref } from 'vue'
-const items = ref([
-  { id: 1, owned: 1, name: "H1", urlImg: 'https://easydrawingguides.com/wp-content/uploads/2021/10/Cute-Chibi-Pikachu-Pokemon-step-by-step-drawing-tutorial-step-10.png' },
-  { id: 2, owned: 2, name: "H2", urlImg: 'https://easydrawingguides.com/wp-content/uploads/2021/10/Cute-Chibi-Pikachu-Pokemon-step-by-step-drawing-tutorial-step-10.png' },
-  { id: 3, owned: 3, name: "H3", urlImg: 'https://easydrawingguides.com/wp-content/uploads/2021/10/Cute-Chibi-Pikachu-Pokemon-step-by-step-drawing-tutorial-step-10.png' },
-  { id: 4, owned: 4, name: "H4", urlImg: 'https://easydrawingguides.com/wp-content/uploads/2021/10/Cute-Chibi-Pikachu-Pokemon-step-by-step-drawing-tutorial-step-10.png' },
-  { id: 5, owned: 5, name: "H5", urlImg: 'https://easydrawingguides.com/wp-content/uploads/2021/10/Cute-Chibi-Pikachu-Pokemon-step-by-step-drawing-tutorial-step-10.png' }
-])
+<script lang="ts">
+import gql from 'graphql-tag'
+import { ref } from "vue";
+import { useQuery } from '@vue/apollo-composable'
+
+const currentPage = ref(1);
+
+const ALL_POKEMONS_QUERY = gql`
+  query POKEMONS($limit: Int, $offset: Int) {
+    pokemons(limit: $limit, offset: $offset) {
+      count
+      next
+      previous
+      status
+      message
+      results {
+        url
+        name
+        image
+      }
+    }
+  }
+`
+
+export default {
+  props: ['type'],
+  name: 'App',
+  setup(props) {
+    const pageLimit = 10;
+    const { result, loading, error, fetchMore } = useQuery(ALL_POKEMONS_QUERY, () => ({
+      type: props.type,
+      offset: 0,
+      limit: pageLimit
+    }));
+
+    function handlePagination(pageNumber: number = 1) {
+      fetchMore({
+        variables: {
+          offset: (pageNumber - 1) * pageLimit
+        },
+        updateQuery: (previousResult, { fetchMoreResult }) => {
+          if (!fetchMoreResult) return previousResult
+
+          return fetchMoreResult;
+        },
+      })
+    }
+
+    return {
+      result,
+      loading,
+      error,
+      handlePagination,
+      currentPage,
+      pageLimit
+    }
+  }
+}
 </script>
 
 <template>
@@ -17,16 +66,22 @@ const items = ref([
   <div>
     <p class="pokemon-title">Pokemon List</p>
     <div class="pokemon-list-container">
-      <div class="pokemon-list-card" v-for="item in items" :key="item.id">
+      <p v-if="error">Something went wrong...</p>
+      <p v-if="loading">Loading...</p>
+      <div class="pokemon-list-card" v-else v-for="pokemon in result.pokemons.results" :key="pokemon.id">
         <div class="pokemon-info-wrapper">
-          <img class="pokemon-img" width="100" height="100" :src="item.urlImg" />
-          <span class="pokemon-list-info__owned">Pokemon Owned: {{ item.owned }}</span>
+          <img class="pokemon-img" width="100" height="100" :src="pokemon.image" />
+          <span class="pokemon-list-info__owned">Pokemon Owned: {{ pokemon.owned }}</span>
         </div>
         <div class="pokemon-name">
-          <span>{{ item.name }}</span>
+          <span>{{ pokemon.name }}</span>
         </div>
       </div>
     </div>
+  </div>
+  <div class="bottom-container">
+    <vue-awesome-paginate :total-items="result.pokemons.count" :items-per-page="pageLimit" :max-pages-shown="5"
+      v-model="currentPage" :on-click="handlePagination" showJumpButtons />
   </div>
 </template>
 
@@ -112,5 +167,39 @@ header {
 
 .pokemon-img {
   margin: 10px 0;
+}
+
+.bottom-container {
+  display: flex;
+  justify-content: center;
+}
+
+.pagination-container {
+  display: flex;
+  column-gap: 10px;
+}
+
+.paginate-buttons {
+  height: 40px;
+  width: 40px;
+  border-radius: 20px;
+  cursor: pointer;
+  background-color: rgb(242, 242, 242);
+  border: 1px solid rgb(217, 217, 217);
+  color: black;
+}
+
+.paginate-buttons:hover {
+  background-color: #d8d8d8;
+}
+
+.active-page {
+  background-color: #3498db;
+  border: 1px solid #3498db;
+  color: white;
+}
+
+.active-page:hover {
+  background-color: #2988c8;
 }
 </style>
