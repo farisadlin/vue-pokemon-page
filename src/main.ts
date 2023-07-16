@@ -1,9 +1,10 @@
-import './assets/main.css'
-
 import { createApp, provide, h } from 'vue'
 import { DefaultApolloClient } from '@vue/apollo-composable'
 import { ApolloClient, InMemoryCache } from '@apollo/client/core'
 import App from './App.vue'
+import Loading from './shared/components/PikachuLoading.vue'
+import PokemonList from './components/PokemonList.vue'
+import MainHeader from './components/MainHeader.vue'
 
 import VueAwesomePaginate from "vue-awesome-paginate";
 import "vue-awesome-paginate/dist/style.css";
@@ -16,11 +17,16 @@ const apolloClient = new ApolloClient({
 })
 
 const app = createApp({
-  setup () {
+  setup() {
     provide(DefaultApolloClient, apolloClient)
   },
 
   render: () => h(App),
 })
+
+app
+  .component('PikachuLoading', Loading)
+  .component('PokemonList', PokemonList)
+  .component('MainHeader', MainHeader)
 
 app.use(VueAwesomePaginate).mount('#app');
