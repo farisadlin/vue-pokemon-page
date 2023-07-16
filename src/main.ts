@@ -8,6 +8,7 @@ import MainHeader from './components/MainHeader.vue'
 
 import VueAwesomePaginate from "vue-awesome-paginate";
 import "vue-awesome-paginate/dist/style.css";
+import router from './router'
 
 const cache = new InMemoryCache()
 
@@ -29,4 +30,8 @@ app
   .component('PokemonList', PokemonList)
   .component('MainHeader', MainHeader)
 
-app.use(VueAwesomePaginate).mount('#app');
+app
+.use(VueAwesomePaginate)
+.use(router)
+
+app.mount('#app');

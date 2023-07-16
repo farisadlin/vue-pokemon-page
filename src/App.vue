@@ -1,9 +1,7 @@
 <script setup lang="ts">
-import PokemonList from './components/PokemonList.vue';
-import MainHeader from './components/MainHeader.vue';
+import { RouterView } from 'vue-router'
 </script>
 
 <template>
-  <MainHeader />
-  <PokemonList />
+  <RouterView />
 </template>

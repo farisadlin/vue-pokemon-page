@@ -1,5 +1,4 @@
 <script lang="ts">
-import gql from 'graphql-tag'
 import { ref } from "vue";
 import { useQuery } from '@vue/apollo-composable'
 import PikachuLoading from '../shared/components/PikachuLoading.vue'
@@ -9,7 +8,6 @@ const currentPage = ref(1);
 
 export default {
     props: ['type'],
-    name: 'App',
     setup(props) {
         const pageLimit = 10;
         const { result, loading, error, fetchMore } = useQuery(AllPokemon, () => ({
