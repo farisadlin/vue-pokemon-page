@@ -1,6 +1,6 @@
 <template>
     <header>
-        <img alt="Pokemon Logo" class="logo" src="@/assets/pokemon-logo.webp" width="350" height="150" />
+        <HeaderImage />
         <button class="my-pokemon-btn">My Pokemon! <span class="my-pokemon-score">1</span></button>
     </header>
 </template>

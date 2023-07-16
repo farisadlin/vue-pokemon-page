@@ -2,12 +2,18 @@
 import { ref } from "vue";
 import { useQuery } from '@vue/apollo-composable'
 import PikachuLoading from '../shared/components/PikachuLoading.vue'
-import AllPokemon from '../graphql/queries/AllPokemon'
+import AllPokemon from '../graphql/queries/AllPokemons'
+import router from "@/router";
 
 const currentPage = ref(1);
 
 export default {
     props: ['type'],
+    methods: {
+        handleIntoPokemonDetail(pokemonName: string) {
+            router.push(`/pokemon-detail/${pokemonName}`)
+        }
+    },
     setup(props) {
         const pageLimit = 10;
         const { result, loading, error, fetchMore } = useQuery(AllPokemon, () => ({
@@ -37,7 +43,8 @@ export default {
             currentPage,
             pageLimit
         }
-    }
+    },
+    components: { PikachuLoading }
 }
 
 </script>
@@ -50,8 +57,8 @@ export default {
             <p v-if="loading">
                 <PikachuLoading />
             </p>
-            <div 
-            class="pokemon-list-card" v-else v-for="pokemon in result.pokemons.results" :key="pokemon.id">
+            <div class="pokemon-list-card" v-else v-for="pokemon in result.pokemons.results"
+                @click="handleIntoPokemonDetail(pokemon.name)" :key="pokemon.id">
                 <div class="pokemon-info-wrapper">
                     <img class="pokemon-img" width="100" height="100" :src="pokemon.image" />
                     <span class="pokemon-list-info__owned">Pokemon Owned: {{ pokemon.owned }}</span>
@@ -122,6 +129,7 @@ export default {
     border-bottom-right-radius: 15px;
     color: rgb(254, 202, 27);
     border-top: none;
+    text-transform: capitalize;
 }
 
 .pokemon-img {
@@ -161,4 +169,4 @@ export default {
 .active-page:hover {
     background-color: #2988c8;
 }
-</style>
+</style>../graphql/queries/AllPokemons

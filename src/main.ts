@@ -5,6 +5,9 @@ import App from './App.vue'
 import Loading from './shared/components/PikachuLoading.vue'
 import PokemonList from './components/PokemonList.vue'
 import MainHeader from './components/MainHeader.vue'
+import MainHeaderPokemonDetail from './modules/pokemonDetail/MainHeader.vue'
+import MainContentPokemonDetail from './modules/pokemonDetail/MainContent.vue'
+import HeaderImage from './shared/components/HeaderImage.vue'
 
 import VueAwesomePaginate from "vue-awesome-paginate";
 import "vue-awesome-paginate/dist/style.css";
@@ -29,6 +32,9 @@ app
   .component('PikachuLoading', Loading)
   .component('PokemonList', PokemonList)
   .component('MainHeader', MainHeader)
+  .component('HeaderImage', HeaderImage)
+  .component('MainHeaderPokemonDetail', MainHeaderPokemonDetail)
+  .component('MainContentPokemonDetail', MainContentPokemonDetail)
 
 app
 .use(VueAwesomePaginate)
