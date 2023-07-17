@@ -59,7 +59,7 @@ export default {
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     border-bottom: none;
-    min-height: 400px;
+    min-height: 500px;
     justify-content: center;
 }
 
@@ -129,57 +129,61 @@ export default {
 
 /* Media Queries */
 @media (max-width: 600px) {
-  /* Styles for mobile devices */
-  .main-container {
-    flex-direction: column;
-  }
 
-  .pokemon-info .pokemon-info__name {
-    font-size: 1.5rem;
-  }
-
-  .main-container__left.pokemon-info {
-    padding-right: 0px;
-  }
-
-  .main-container__right.pokemon-info {
-    padding: 0 0px 10px 10px;
-    margin-top: 20px;
+    /* Styles for mobile devices */
+    .main-container {
+        flex-direction: column;
     }
 
-  .pokemon-info .pokemon-img {
-    width: 200px;
-  }
+    .pokemon-info .pokemon-info__name {
+        font-size: 1.5rem;
+    }
 
-  .catch-pokemon-btn-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 5px;
-}
+    .main-container__left.pokemon-info {
+        padding-right: 0px;
+    }
+
+    .main-container__right.pokemon-info {
+        padding: 0 0px 10px 10px;
+        margin-top: 20px;
+        width: auto;
+    }
+
+    .pokemon-info .pokemon-img {
+        width: 200px;
+    }
+
+    .catch-pokemon-btn-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 5px;
+    }
 }
 
 @media (min-width: 601px) and (max-width: 1024px) {
-  /* Styles for tablet devices */
-  .main-container {
-    flex-direction: column;
-  }
 
-  .main-container__left.pokemon-info {
-    padding-right: 0px;
-  }
-
-  .main-container__right.pokemon-info {
-    padding: 0 0px 10px 10px;
-    margin-top: 20px;
+    /* Styles for tablet devices */
+    .main-container {
+        flex-direction: column;
     }
 
-  .pokemon-info .pokemon-img {
-    width: 250px;
-  }
-   .catch-pokemon-btn-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 5px;
-}
-}
-</style>
+    .main-container__left.pokemon-info {
+        padding-right: 0px;
+    }
+
+    .main-container__right.pokemon-info {
+        padding: 0 0px 10px 10px;
+        margin-top: 20px;
+        width: auto;
+    }
+
+    .pokemon-info .pokemon-img {
+        width: 250px;
+    }
+
+    .catch-pokemon-btn-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 5px;
+    }
+}</style>

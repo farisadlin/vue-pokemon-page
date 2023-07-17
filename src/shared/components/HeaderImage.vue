@@ -13,3 +13,22 @@ export default {
 <template>
     <img @click="handleGoBack" alt="Pokemon Logo" class="logo" src="@/assets/pokemon-logo.webp" width="250" height="100" />
 </template>
+
+<style scoped>
+/* Media Queries */
+@media (max-width: 600px) {
+
+    /* Styles for mobile devices */
+    .logo {
+        width: 100%;
+    }
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+
+    /* Styles for tablet devices */
+    .logo {
+        width: 100%;
+    }
+}
+</style>
