@@ -40,7 +40,7 @@ export default {
     </p>
     <div class="container" v-else>
         <MainHeader :pokemonName="result.pokemon.name" />
-        <MainContent :pokemonName="result.pokemon.name" :urlImg="result.pokemon.sprites.front_default"
+        <MainContent :pokemonId="result.pokemon.id" :pokemonName="result.pokemon.name" :urlImg="result.pokemon.sprites.front_default"
             :pokemonTypes="result.pokemon.types" :pokemonMoves="result.pokemon.moves" />
     </div>
 </template>

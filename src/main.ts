@@ -12,6 +12,8 @@ import HeaderImage from './shared/components/HeaderImage.vue'
 import VueAwesomePaginate from "vue-awesome-paginate";
 import "vue-awesome-paginate/dist/style.css";
 import router from './router'
+import VueSweetalert2 from 'vue-sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
 
 const cache = new InMemoryCache()
 
@@ -38,6 +40,7 @@ app
 
 app
 .use(VueAwesomePaginate)
+.use(VueSweetalert2)
 .use(router)
 
 app.mount('#app');
