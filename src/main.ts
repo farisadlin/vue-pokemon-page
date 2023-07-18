@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 import { createApp, provide, h } from 'vue'
 import { DefaultApolloClient } from '@vue/apollo-composable'
 import { ApolloClient, InMemoryCache } from '@apollo/client/core'
@@ -30,8 +28,6 @@ const apolloClient = new ApolloClient({
   uri: 'https://graphql-pokeapi.graphcdn.app/',
 })
 
-const pinia = createPinia()
-
 const app = createApp({
   setup() {
     provide(DefaultApolloClient, apolloClient)
@@ -57,6 +53,6 @@ app
   .use(VueAwesomePaginate)
   .use(VueSweetalert2)
   .use(router)
-  .use(pinia)
+  .use(createPinia())
 
 app.mount('#app');
