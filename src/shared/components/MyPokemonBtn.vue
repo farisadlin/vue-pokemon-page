@@ -11,7 +11,7 @@ export default {
         handleGoToMyPokemon() {
             router.push('/my-pokemon-list')
         }
-    }
+    },
 }
 </script>
 
@@ -25,7 +25,7 @@ export default {
 <style scoped>
 .my-pokemon-btn {
     margin: auto 0;
-    padding: 10px 20px;
+    padding: 0 20px;
     border-radius: 20px;
     border: 3px solid #FECA1B;
     font-size: 1rem;
@@ -34,6 +34,14 @@ export default {
     display: flex;
     transition: 0.1s;
     background-color: white;
+    cursor: pointer;
+    transition: 0.1s;
+}
+
+.my-pokemon-btn:hover {
+    background-color: rgb(55, 97, 168);
+    color: white;
+    border: 3px solid white;
 }
 
 .my-pokemon-score {

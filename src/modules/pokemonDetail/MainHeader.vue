@@ -37,10 +37,12 @@ export default {
 
 .breadcrumb-wrapper {
     text-transform: capitalize;
+    margin-top: 10px;
 }
 
 .breadcrumb-wrapper .homepage {
     color: #cacaca;
+    cursor: pointer;
 }
 
 .breadcrumb-wrapper .pokemon-name {

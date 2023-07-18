@@ -76,7 +76,7 @@ export default {
             <p v-if="loading">
                 <PikachuLoading />
             </p>
-            <PokemonCard v-else :pokemons="newCurrListPokemon" :handleIntoPokemonDetail="handleIntoPokemonDetail" />
+            <PokemonCard isFromMainMenu v-else :pokemons="newCurrListPokemon" :handleIntoPokemonDetail="handleIntoPokemonDetail" />
         </div>
     </div>
     <p v-if="loading">
@@ -95,45 +95,6 @@ export default {
     flex-flow: row wrap;
     height: 100%;
 }
-
-.pokemon-list-card {
-    width: 200px;
-    height: 100%;
-    margin: 0px 15px 15px;
-}
-
-.pokemon-info-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: 3px solid rgb(55, 97, 168);
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-    border-bottom: none;
-}
-
-.pokemon-list-info__owned {
-    margin: 10px 0;
-    color: rgb(55, 97, 168);
-    font-size: 0.75rem;
-}
-
-.pokemon-name {
-    text-align: center;
-    background-color: rgb(55, 97, 168);
-    padding: 10px;
-    cursor: pointer;
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
-    color: rgb(254, 202, 27);
-    border-top: none;
-    text-transform: capitalize;
-}
-
-.pokemon-img {
-    margin: 10px 0;
-}
-
 .bottom-container {
     display: flex;
     justify-content: center;
@@ -163,7 +124,6 @@ export default {
     border: 1px solid #3498db;
     color: white;
 }
-
 .active-page:hover {
     background-color: #2988c8;
 }

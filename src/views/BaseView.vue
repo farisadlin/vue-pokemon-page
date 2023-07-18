@@ -1,4 +1,4 @@
 <template>
-    <MainHeader />
+    <MainHeader isFromMainMenu />
     <PokemonList />
 </template>

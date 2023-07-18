@@ -15,6 +15,9 @@ export default {
 </template>
 
 <style scoped>
+.logo {
+    cursor: pointer;
+}
 /* Media Queries */
 @media (max-width: 600px) {
 

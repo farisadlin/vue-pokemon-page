@@ -16,10 +16,17 @@ export default {
 
 <style scoped>
 .back-btn {
+    cursor: pointer;
     padding: 15px 20px;
     outline: none;
     border: none;
     border-radius: 15px;
-    margin-bottom: 10px;
+    margin-right: 10px;
+    transition: 0.1s;
+}
+
+.back-btn:hover {
+    background-color: rgb(239, 68, 68);
+    color: white;
 }
 </style>

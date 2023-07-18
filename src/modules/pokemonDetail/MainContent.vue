@@ -191,6 +191,11 @@ export default {
     outline: none;
     border-radius: 20px;
     transition: 0.1s;
+    cursor: pointer;
+}
+
+.catch-pokemon-btn:hover {
+    filter: brightness(1.25);
 }
 
 /* Media Queries */
