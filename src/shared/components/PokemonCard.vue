@@ -135,6 +135,7 @@ export default {
     align-items: center;
     height: 400px;
     justify-content: center;
+    text-align: center;
 }
 
 .catch-pokemon-btn-container {
