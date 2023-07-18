@@ -217,6 +217,10 @@ export default {
         padding-right: 0px;
     }
 
+    .pokemon-info__image-wrapper {
+        min-height: 250px;
+    }
+
     .main-container__right.pokemon-info {
         padding: 0 0px 10px 10px;
         margin-top: 20px;
@@ -243,6 +247,10 @@ export default {
 
     .main-container__left.pokemon-info {
         padding-right: 0px;
+    }
+
+    .pokemon-info__image-wrapper {
+        min-height: 300px;
     }
 
     .main-container__right.pokemon-info {

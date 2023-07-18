@@ -1,4 +1,6 @@
 <template>
-    <MainHeader isFromMainMenu />
-    <PokemonList />
+    <RootContainer>
+        <MainHeader isFromMainMenu />
+        <PokemonList />
+    </RootContainer>
 </template>

@@ -76,13 +76,14 @@ export default {
             <p v-if="loading">
                 <PikachuLoading />
             </p>
-            <PokemonCard isFromMainMenu v-else :pokemons="newCurrListPokemon" :handleIntoPokemonDetail="handleIntoPokemonDetail" />
+            <PokemonCard isFromMainMenu v-else :pokemons="newCurrListPokemon"
+                :handleIntoPokemonDetail="handleIntoPokemonDetail" />
         </div>
     </div>
-    <p v-if="loading">
+    <div v-if="loading">
         <PikachuLoading />
-    </p>
-    <div v-else class="bottom-container">
+    </div>
+    <div v-else class="pagination-container">
         <vue-awesome-paginate :total-items="result?.pokemons?.count" :items-per-page="pageLimit" :max-pages-shown="5"
             v-model="currentPage" :on-click="handlePagination" showJumpButtons />
     </div>
@@ -95,17 +96,14 @@ export default {
     flex-flow: row wrap;
     height: 100%;
 }
-.bottom-container {
-    display: flex;
-    justify-content: center;
-}
 
 .pagination-container {
     display: flex;
     column-gap: 10px;
+    justify-content: center;
 }
 
-.paginate-buttons {
+.pagination-container .paginate-buttons {
     height: 40px;
     width: 40px;
     border-radius: 20px;
@@ -115,16 +113,16 @@ export default {
     color: black;
 }
 
-.paginate-buttons:hover {
+.pagination-container .paginate-buttons:hover {
     background-color: #d8d8d8;
 }
 
-.active-page {
+.pagination-container .active-page {
     background-color: #3498db;
     border: 1px solid #3498db;
     color: white;
 }
-.active-page:hover {
+
+.pagination-container .active-page:hover {
     background-color: #2988c8;
-}
-</style>../graphql/queries/AllPokemons
+}</style>

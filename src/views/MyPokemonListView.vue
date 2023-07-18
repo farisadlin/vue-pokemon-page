@@ -36,13 +36,15 @@ export default {
 </script>
 
 <template>
-    <MainHeader />
-    <div>
-        <MainTitle title="My Pokemon List" />
-        <div class="pokemon-list-container">
-            <PokemonCard :pokemons="newCurrListPokemon" :handleIntoPokemonDetail="handleIntoPokemonDetail" />
+    <RootContainer>
+        <MainHeader />
+        <div>
+            <MainTitle title="My Pokemon List" />
+            <div class="pokemon-list-container">
+                <PokemonCard :pokemons="newCurrListPokemon" :handleIntoPokemonDetail="handleIntoPokemonDetail" />
+            </div>
         </div>
-    </div>
+    </RootContainer>
 </template>
 
 <style scoped>
@@ -52,4 +54,4 @@ export default {
     flex-flow: row wrap;
     height: 100%;
 }
-</style>../graphql/queries/AllPokemons
+</style>

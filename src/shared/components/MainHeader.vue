@@ -1,5 +1,5 @@
 <script lang="ts">
-export default { 
+export default {
     props: {
         isFromMainMenu: Boolean
     }
@@ -32,5 +32,13 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+@media (max-width: 600px) {
+    .btn-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
 }
 </style>

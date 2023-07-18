@@ -29,15 +29,18 @@ export default {
 </script>
 
 <template>
-    <p v-if="error">Something went wrong...</p>
-    <p v-if="loading">
-        <PikachuLoading />
-    </p>
-    <div class="container" v-else>
-        <MainHeaderPokemonDetail :pokemonName="result.pokemon.name" />
-        <MainContentPokemonDetail :pokemonId="result.pokemon.id" :pokemonName="result.pokemon.name" :urlImg="result.pokemon.sprites.front_default"
-            :pokemonTypes="result.pokemon.types" :pokemonMoves="result.pokemon.moves" />
-    </div>
+    <RootContainer>
+        <p v-if="error">Something went wrong...</p>
+        <p v-if="loading">
+            <PikachuLoading />
+        </p>
+        <div class="container" v-else>
+            <MainHeaderPokemonDetail :pokemonName="result.pokemon.name" />
+            <MainContentPokemonDetail :pokemonId="result.pokemon.id" :pokemonName="result.pokemon.name"
+                :urlImg="result.pokemon.sprites.front_default" :pokemonTypes="result.pokemon.types"
+                :pokemonMoves="result.pokemon.moves" />
+        </div>
+    </RootContainer>
 </template>
 
 <style scoped>

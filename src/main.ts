@@ -4,9 +4,10 @@ import { ApolloClient, InMemoryCache } from '@apollo/client/core'
 import App from './App.vue'
 import Loading from './shared/components/PikachuLoading.vue'
 import PokemonList from './components/PokemonList.vue'
-import MainHeader from './components/MainHeader.vue'
+import MainHeader from './shared/components/MainHeader.vue'
 import MainHeaderPokemonDetail from './modules/pokemonDetail/MainHeader.vue'
 import MainContentPokemonDetail from './modules/pokemonDetail/MainContent.vue'
+import RootContainer from './shared/components/RootContainer.vue'
 import HeaderImage from './shared/components/HeaderImage.vue'
 import PokemonCard from './shared/components/PokemonCard.vue'
 import MyPokemonBtn from './shared/components/MyPokemonBtn.vue'
@@ -38,6 +39,7 @@ const app = createApp({
 })
 
 app
+  .component('RootContainer', RootContainer)
   .component('PikachuLoading', Loading)
   .component('PokemonList', PokemonList)
   .component('MainHeader', MainHeader)
@@ -50,9 +52,9 @@ app
   .component('BackBtn', BackBtn)
 
 app
-.use(VueAwesomePaginate)
-.use(VueSweetalert2)
-.use(router)
-.use(pinia)
+  .use(VueAwesomePaginate)
+  .use(VueSweetalert2)
+  .use(router)
+  .use(pinia)
 
 app.mount('#app');
