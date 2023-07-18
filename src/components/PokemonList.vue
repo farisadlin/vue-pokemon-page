@@ -70,7 +70,7 @@ export default {
 
 <template>
     <div>
-        <p class="pokemon-title">Pokemon List</p>
+        <MainTitle />
         <div class="pokemon-list-container">
             <p v-if="error">Something went wrong...</p>
             <p v-if="loading">
@@ -89,18 +89,6 @@ export default {
 </template>
 
 <style scoped>
-.pokemon-title {
-    font-family: "Segoe UI", sans-serif;
-    font-size: 1rem;
-    color: rgb(55, 97, 168);
-    text-align: center;
-    margin: 15px auto;
-    background-color: rgb(238, 238, 238);
-    width: 200px;
-    padding: 5px 0px;
-    border-radius: 15px;
-}
-
 .pokemon-list-container {
     display: flex;
     justify-content: center;

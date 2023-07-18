@@ -5,10 +5,6 @@ import PokemonDetail from '../graphql/queries/PokemonDetail'
 
 import router from '@/router';
 
-import PikachuLoading from '@/shared/components/PikachuLoading.vue';
-import MainHeader from '@/modules/pokemonDetail/MainHeader.vue';
-import MainContent from '@/modules/pokemonDetail/MainContent.vue';
-
 export default {
     props: ["type"],
     methods: {
@@ -28,8 +24,7 @@ export default {
             loading,
             error
         };
-    },
-    components: { MainHeader, PikachuLoading, MainContent }
+    }
 }
 </script>
 
@@ -39,8 +34,8 @@ export default {
         <PikachuLoading />
     </p>
     <div class="container" v-else>
-        <MainHeader :pokemonName="result.pokemon.name" />
-        <MainContent :pokemonId="result.pokemon.id" :pokemonName="result.pokemon.name" :urlImg="result.pokemon.sprites.front_default"
+        <MainHeaderPokemonDetail :pokemonName="result.pokemon.name" />
+        <MainContentPokemonDetail :pokemonId="result.pokemon.id" :pokemonName="result.pokemon.name" :urlImg="result.pokemon.sprites.front_default"
             :pokemonTypes="result.pokemon.types" :pokemonMoves="result.pokemon.moves" />
     </div>
 </template>
