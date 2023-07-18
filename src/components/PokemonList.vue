@@ -42,17 +42,16 @@ export default {
 
         const currentListPokemonOwned = JSON.parse(localStorage.getItem("allMyPokemonList") || 'null');
 
-        const countPokemonOwned: Record<number, number> = currentListPokemonOwned.reduce((acc: Record<number, number>, curr: { id: number }) => {
+        const countPokemonOwned: Record<number, number> = currentListPokemonOwned?.reduce((acc: Record<number, number>, curr: { id: number }) => {
             return { ...acc, [curr.id]: (acc[curr.id] || 0) + 1 }
-        }, {})
+        }, {}) || {}
 
         const newCurrListPokemon = computed(() => pokemons?.value.results?.map((result: any) => {
             const id = result.id;
-            if (Object.prototype.hasOwnProperty.call(countPokemonOwned, id)) {
-                return { ...result, owned: countPokemonOwned[id] }
-            }
-            return { ...result, owned: 0 };
-        }))
+            const owned = countPokemonOwned[id] ?? 0;
+            return { ...result, owned };
+        }));
+
 
         return {
             result,
@@ -125,4 +124,5 @@ export default {
 
 .pagination-container .active-page:hover {
     background-color: #2988c8;
-}</style>
+}
+</style>

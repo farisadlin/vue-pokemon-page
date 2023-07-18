@@ -203,7 +203,6 @@ export default {
 
 /* Media Queries */
 @media (max-width: 600px) {
-
     /* Styles for mobile devices */
     .main-container {
         flex-direction: column;
@@ -239,7 +238,6 @@ export default {
 }
 
 @media (min-width: 601px) and (max-width: 1024px) {
-
     /* Styles for tablet devices */
     .main-container {
         flex-direction: column;

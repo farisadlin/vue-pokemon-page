@@ -18,7 +18,7 @@ export default {
 
 <template>
     <button @click="handleGoToMyPokemon" class="my-pokemon-btn">My Pokemon! <span class="my-pokemon-score">
-            {{ pokemonStore.totalOwned }}
+            {{ pokemonStore.totalOwned || 0 }}
         </span>
     </button>
 </template>
