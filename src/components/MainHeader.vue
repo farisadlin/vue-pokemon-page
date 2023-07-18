@@ -1,7 +1,18 @@
+<script lang="ts">
+export default {
+    data() {
+        return {
+            currentListPokemonOwned: JSON.parse(localStorage.getItem("allMyPokemonList") || 'null').length
+        }
+    }
+}
+</script>
+
 <template>
     <header>
         <HeaderImage />
-        <button class="my-pokemon-btn">My Pokemon! <span class="my-pokemon-score">1</span></button>
+        <button class="my-pokemon-btn">My Pokemon! <span class="my-pokemon-score">{{ currentListPokemonOwned
+        }}</span></button>
     </header>
 </template>
 

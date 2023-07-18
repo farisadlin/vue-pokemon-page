@@ -20,7 +20,7 @@ export default {
 
     /* Styles for mobile devices */
     .logo {
-        width: 100%;
+        width: 150px;
     }
 }
 
@@ -28,7 +28,7 @@ export default {
 
     /* Styles for tablet devices */
     .logo {
-        width: 100%;
+        width: 200px;
     }
 }
 </style>

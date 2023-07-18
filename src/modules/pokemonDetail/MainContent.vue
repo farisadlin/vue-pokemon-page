@@ -41,14 +41,13 @@ export default {
                     confirmButtonText: "Give Pokemon the Nickname",
                     allowOutsideClick: false,
                     focusConfirm: true,
-                    preConfirm: (value) => {
-                        console.log({value})
+                    preConfirm: () => {
                         const allMyPokemonList = JSON.parse(localStorage.getItem("allMyPokemonList") || 'null');
 
-                        const nickname = this?.$swal?.getPopup()?.querySelector<HTMLInputElement>("#nickname")?.value;
+                        const nickname = (this?.$swal?.getPopup()?.querySelector("#nickname") as HTMLInputElement | null)?.value;
 
                         const matchedNickname = allMyPokemonList?.some((pokemon: AllMyPokemonList) => pokemon.nickname === nickname.toLowerCase() && pokemon.name === this?.pokemonName?.toLowerCase())
-                        
+
                         if (matchedNickname || !nickname || nickname === undefined) {
                             this?.$swal?.showValidationMessage(
                                 matchedNickname

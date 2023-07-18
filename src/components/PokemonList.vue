@@ -4,11 +4,13 @@ import { useQuery } from '@vue/apollo-composable'
 import PikachuLoading from '../shared/components/PikachuLoading.vue'
 import AllPokemon from '../graphql/queries/AllPokemons'
 import router from "@/router";
+import { computed } from 'vue'
 
 const currentPage = ref(1);
 
 export default {
     props: ['type'],
+    components: { PikachuLoading },
     methods: {
         handleIntoPokemonDetail(pokemonName: string) {
             router.push(`/pokemon-detail/${pokemonName}`)
@@ -16,11 +18,16 @@ export default {
     },
     setup(props) {
         const pageLimit = 10;
+
         const { result, loading, error, fetchMore } = useQuery(AllPokemon, () => ({
             type: props.type,
             offset: 0,
             limit: pageLimit
-        }));
+        }), {
+            fetchPolicy: 'cache-and-network'
+        });
+
+        const pokemons = computed(() => result.value?.pokemons ?? [])
 
         function handlePagination(pageNumber: number = 1) {
             fetchMore({
@@ -35,16 +42,30 @@ export default {
             })
         }
 
+        const currentListPokemonOwned = JSON.parse(localStorage.getItem("allMyPokemonList") || 'null');
+
+        const countPokemonOwned: Record<number, number> = currentListPokemonOwned.reduce((acc: Record<number, number>, curr: { id: number }) => {
+            return { ...acc, [curr.id]: (acc[curr.id] || 0) + 1 }
+        }, {})
+
+        const newCurrListPokemon = computed(() => pokemons?.value.results?.map((result: any) => {
+            const id = result.id;
+            if (Object.prototype.hasOwnProperty.call(countPokemonOwned, id)) {
+                return { ...result, owned: countPokemonOwned[id] }
+            }
+            return { ...result, owned: 0 };
+        }))
+
         return {
             result,
             loading,
             error,
             handlePagination,
             currentPage,
-            pageLimit
+            pageLimit,
+            newCurrListPokemon,
         }
     },
-    components: { PikachuLoading }
 }
 
 </script>
@@ -57,7 +78,7 @@ export default {
             <p v-if="loading">
                 <PikachuLoading />
             </p>
-            <div class="pokemon-list-card" v-else v-for="pokemon in result.pokemons.results"
+            <div class="pokemon-list-card" v-else v-for="pokemon in newCurrListPokemon"
                 @click="handleIntoPokemonDetail(pokemon.name)" :key="pokemon.id">
                 <div class="pokemon-info-wrapper">
                     <img class="pokemon-img" width="100" height="100" :src="pokemon.image" />
