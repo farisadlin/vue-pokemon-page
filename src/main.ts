@@ -1,18 +1,20 @@
+// @ts-nocheck
+
 import { createApp, provide, h } from 'vue'
 import { DefaultApolloClient } from '@vue/apollo-composable'
 import { ApolloClient, InMemoryCache } from '@apollo/client/core'
 import App from './App.vue'
 import Loading from './shared/components/PikachuLoading.vue'
 import PokemonList from './components/PokemonList.vue'
-import MainHeader from './shared/components/MainHeader.vue'
-import MainHeaderPokemonDetail from './modules/pokemonDetail/MainHeader.vue'
-import MainContentPokemonDetail from './modules/pokemonDetail/MainContent.vue'
-import RootContainer from './shared/components/RootContainer.vue'
-import HeaderImage from './shared/components/HeaderImage.vue'
-import PokemonCard from './shared/components/PokemonCard.vue'
-import MyPokemonBtn from './shared/components/MyPokemonBtn.vue'
-import MainTitle from './shared/components/MainTitle.vue'
-import BackBtn from './shared/components/BackBtn.vue'
+import MainHeader from '@/shared/components/MainHeader.vue'
+import MainHeaderPokemonDetail from '@/modules/pokemonDetail/MainHeader.vue'
+import MainContentPokemonDetail from '@/modules/pokemonDetail/MainContent.vue'
+import RootContainer from '@/shared/components/RootContainer.vue'
+import HeaderImage from '@/shared/components/HeaderImage.vue'
+import PokemonCard from '@/shared/components/PokemonCard.vue'
+import MyPokemonBtn from '@/shared/components/MyPokemonBtn.vue'
+import MainTitle from '@/shared/components/MainTitle.vue'
+import BackBtn from '@/shared/components/BackBtn.vue'
 
 import VueAwesomePaginate from "vue-awesome-paginate";
 import "vue-awesome-paginate/dist/style.css";

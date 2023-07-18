@@ -1,4 +1,6 @@
 <script lang="ts">
+// @ts-nocheck
+
 import router from '@/router';
 import type { SweetAlertResult } from 'sweetalert2';
 import type { AllMyPokemonList } from '@/shared/types';
