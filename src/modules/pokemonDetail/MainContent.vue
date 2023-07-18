@@ -1,13 +1,7 @@
 <script lang="ts">
 import router from '@/router';
 import type { SweetAlertResult } from 'sweetalert2';
-
-interface AllMyPokemonList {
-    id: number,
-    name: string,
-    nickname: string,
-    image: string
-}
+import type { AllMyPokemonList } from '@/shared/types';
 
 export default {
     props: {

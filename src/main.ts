@@ -8,6 +8,8 @@ import MainHeader from './components/MainHeader.vue'
 import MainHeaderPokemonDetail from './modules/pokemonDetail/MainHeader.vue'
 import MainContentPokemonDetail from './modules/pokemonDetail/MainContent.vue'
 import HeaderImage from './shared/components/HeaderImage.vue'
+import PokemonCard from './shared/components/PokemonCard.vue'
+import MyPokemonBtn from './shared/components/MyPokemonBtn.vue'
 
 import VueAwesomePaginate from "vue-awesome-paginate";
 import "vue-awesome-paginate/dist/style.css";
@@ -37,6 +39,8 @@ app
   .component('HeaderImage', HeaderImage)
   .component('MainHeaderPokemonDetail', MainHeaderPokemonDetail)
   .component('MainContentPokemonDetail', MainContentPokemonDetail)
+  .component('PokemonCard', PokemonCard)
+  .component('MyPokemonBtn', MyPokemonBtn)
 
 app
 .use(VueAwesomePaginate)

@@ -1,7 +1,6 @@
 <script lang="ts">
 import { ref } from "vue";
 import { useQuery } from '@vue/apollo-composable'
-import PikachuLoading from '../shared/components/PikachuLoading.vue'
 import AllPokemon from '../graphql/queries/AllPokemons'
 import router from "@/router";
 import { computed } from 'vue'
@@ -10,7 +9,6 @@ const currentPage = ref(1);
 
 export default {
     props: ['type'],
-    components: { PikachuLoading },
     methods: {
         handleIntoPokemonDetail(pokemonName: string) {
             router.push(`/pokemon-detail/${pokemonName}`)
@@ -78,16 +76,7 @@ export default {
             <p v-if="loading">
                 <PikachuLoading />
             </p>
-            <div class="pokemon-list-card" v-else v-for="pokemon in newCurrListPokemon"
-                @click="handleIntoPokemonDetail(pokemon.name)" :key="pokemon.id">
-                <div class="pokemon-info-wrapper">
-                    <img class="pokemon-img" width="100" height="100" :src="pokemon.image" />
-                    <span class="pokemon-list-info__owned">Pokemon Owned: {{ pokemon.owned }}</span>
-                </div>
-                <div class="pokemon-name">
-                    <span>{{ pokemon.name }}</span>
-                </div>
-            </div>
+            <PokemonCard v-else :pokemons="newCurrListPokemon" :handleIntoPokemonDetail="handleIntoPokemonDetail" />
         </div>
     </div>
     <p v-if="loading">
