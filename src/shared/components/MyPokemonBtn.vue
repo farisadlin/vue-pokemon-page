@@ -1,10 +1,11 @@
 <script lang="ts">
 import router from '@/router';
+import { useTotalOwnedPokemons } from '@/stores/useTotalOwnedPokemons';
 
 export default {
     data() {
         return {
-            currentListPokemonOwned: JSON.parse(localStorage.getItem("allMyPokemonList") || 'null').length
+            pokemonStore: useTotalOwnedPokemons()
         }
     },
     methods: {
@@ -17,8 +18,8 @@ export default {
 
 <template>
     <button @click="handleGoToMyPokemon" class="my-pokemon-btn">My Pokemon! <span class="my-pokemon-score">
-        {{ currentListPokemonOwned }}
-    </span>
+            {{ pokemonStore.totalOwned }}
+        </span>
     </button>
 </template>
 

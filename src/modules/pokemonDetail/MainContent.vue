@@ -2,6 +2,7 @@
 import router from '@/router';
 import type { SweetAlertResult } from 'sweetalert2';
 import type { AllMyPokemonList } from '@/shared/types';
+import { useTotalOwnedPokemons } from '@/stores/useTotalOwnedPokemons';
 
 export default {
     props: {
@@ -53,6 +54,7 @@ export default {
                         }
                     },
                 }).then((result: SweetAlertResult) => {
+                    const { handleUpdateTotalOwnedPokemons } = useTotalOwnedPokemons()
                     this?.$swal?.fire(
                         `Congratulation! Your Pokemon Nickname is ${result?.value?.nickname}`.trim(),
                     );
@@ -69,6 +71,7 @@ export default {
                     window.localStorage.setItem("myPokemon", JSON.stringify(myPokemon));
                     allMyPokemonList.push(myPokemon);
                     window.localStorage.setItem("allMyPokemonList", JSON.stringify(allMyPokemonList));
+                    handleUpdateTotalOwnedPokemons(allMyPokemonList.length)
                 }).then(() => {
                     router.replace("/my-pokemon-list");
                 })

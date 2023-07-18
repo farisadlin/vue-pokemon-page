@@ -3,7 +3,7 @@ export interface AllMyPokemonList {
     name: string,
     nickname: string,
     image: string,
-    owned?: number,
+    owned?: number | any,
 }
 
 export default {}

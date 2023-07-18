@@ -1,5 +1,7 @@
 <script lang="ts">
 import type { AllMyPokemonList } from '@/shared/types'
+import { useTotalOwnedPokemons } from '@/stores/useTotalOwnedPokemons';
+import { computed } from 'vue';
 export default {
     props: {
         pokemons: {
@@ -20,10 +22,24 @@ export default {
     },
     methods: {
         handleReleasePokemon(id: number, nickname: string) {
+            const { handleUpdateTotalOwnedPokemons } = useTotalOwnedPokemons();
             const newCurrentListPokemonOwned = this?.currentListPokemonOwned?.filter((pokemon: AllMyPokemonList) => pokemon.id !== id || pokemon.nickname !== nickname)
             localStorage.clear();
             localStorage.setItem("allMyPokemonList", JSON.stringify(newCurrentListPokemonOwned));
-            this.currentListPokemonOwned = newCurrentListPokemonOwned;
+            handleUpdateTotalOwnedPokemons(newCurrentListPokemonOwned?.length);
+
+            const countPokemonOwned: Record<number, number> = newCurrentListPokemonOwned?.reduce((acc: Record<number, number>, curr: { id: number }) => {
+                return { ...acc, [curr.id]: (acc[curr.id] || 0) + 1 }
+            }, {})
+
+            const newCurrListPokemon = computed(() => newCurrentListPokemonOwned?.map((result: any) => {
+                const id = result.id;
+                if (Object.prototype.hasOwnProperty.call(countPokemonOwned, id)) {
+                    return { ...result, owned: countPokemonOwned[id] }
+                }
+                return { ...result, owned: 0 };
+            }))
+            this.currentListPokemonOwned = newCurrListPokemon;
             this.updateKey++;
         }
     },
@@ -39,7 +55,8 @@ export default {
         <div class="pokemon-name">
             <span>{{ isFromMainMenu ? pokemon.name : pokemon.nickname }}</span>
         </div>
-        <button @click="handleReleasePokemon(pokemon.id, pokemon.nickname)" class="release-btn" v-if="!isFromMainMenu">Release
+        <button @click="handleReleasePokemon(pokemon.id, pokemon.nickname)" class="release-btn"
+            v-if="!isFromMainMenu">Release
             Pokemon</button>
     </div>
 </template>

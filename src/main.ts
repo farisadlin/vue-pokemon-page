@@ -18,6 +18,7 @@ import "vue-awesome-paginate/dist/style.css";
 import router from './router'
 import VueSweetalert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
+import { createPinia } from 'pinia'
 
 const cache = new InMemoryCache()
 
@@ -25,6 +26,8 @@ const apolloClient = new ApolloClient({
   cache,
   uri: 'https://graphql-pokeapi.graphcdn.app/',
 })
+
+const pinia = createPinia()
 
 const app = createApp({
   setup() {
@@ -50,5 +53,6 @@ app
 .use(VueAwesomePaginate)
 .use(VueSweetalert2)
 .use(router)
+.use(pinia)
 
 app.mount('#app');
