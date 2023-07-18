@@ -10,10 +10,5 @@
     {
       "path": "./tsconfig.vitest.json"
     },
-    {
-      "types": [
-        "vue-sweetalert2"
-      ],
-    }
   ]
 }
