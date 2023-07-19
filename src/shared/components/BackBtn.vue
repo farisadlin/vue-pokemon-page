@@ -29,4 +29,10 @@ export default {
     background-color: rgb(239, 68, 68);
     color: white;
 }
+
+@media (max-width: 600px) {
+    .back-btn {
+        margin-bottom: 10px;
+    }
+}
 </style>
