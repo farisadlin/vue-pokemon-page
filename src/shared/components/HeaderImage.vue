@@ -24,6 +24,7 @@ export default {
     /* Styles for mobile devices */
     .logo {
         width: 150px;
+        height: 75px;
     }
 }
 
